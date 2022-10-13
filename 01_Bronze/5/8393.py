@@ -1,0 +1,5 @@
+import sys
+input = sys.stdin.readline
+
+print(sum([ i for i in range(1, int(input()) + 1)]))
+
