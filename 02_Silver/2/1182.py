@@ -1,11 +1,20 @@
-from itertools import combinations
+import sys
+input = sys.stdin.readline
 
-n, s = map(int, input().split())
-array = list(map(int, input().split()))
+N, S = map(int, input().strip().split())
+array = list(map(int, input().strip().split()))
 
-result = 0
-for i in range(1, n+1):
-    for combination in list(combinations(array, i)):
-        if sum(combination) == s:
-            result += 1
-print(result)
+ans = 0
+def solve(index, total):
+    global ans
+    if index == N:
+        if total == S:
+            ans += 1
+        return
+    solve(index + 1, total + array[index])
+    solve(index + 1, total)
+
+solve(0, 0)
+if S == 0:
+    ans -= 1
+print(ans)
