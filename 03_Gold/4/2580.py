@@ -3,9 +3,9 @@ input = sys.stdin.readline
 
 board = [list(map(int, input().strip().split())) for _ in range(9)]
 
-c = [[False] * 10 for _ in range(10)]
-c2 = [[False] * 10 for _ in range(10)]
-c3 = [[False] * 10 for _ in range(10)]
+c = [[False for _ in range(10)] for _ in range(9)] # row
+c2 = [[False for _ in range(10)] for _ in range(9)] # column
+c3 = [[False for _ in range(10)] for _ in range(9)] # square
 
 
 def square(x, y):
@@ -20,9 +20,9 @@ for i in range(9):
 
 def go(z):
     if z == 81:
-        for i in range(9):
-            print(*board[i], sep=' ')
-        return
+        for i in board:
+            print(*i)
+        exit()
     x = z // 9
     y = z % 9
     if board[x][y] != 0:
